@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const urlSchema = new mongoose.Schema({
     shortid: {
         type: String,
-        unique : true
+        unique: true,
+        required: true
     },
     ActualUrl: {
         type: String,
@@ -12,8 +13,8 @@ const urlSchema = new mongoose.Schema({
     Users: [
         {
             time: {
-                type: Number,
-                
+                type: Date,
+                default: Date.now
             }
         }
     ]
