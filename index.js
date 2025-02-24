@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const { connectToMongoDb } = require("./Database/Connect")
 const Urlmongo = require('./Models/Urls')
+const path = require('path');
 const env = require("dotenv").config();
 app.set('view engine', 'ejs');
 const port = process.env.PORT | 2002;
@@ -9,6 +10,9 @@ connectToMongoDb(process.env.MONGO_URL);
 const urlrouter = require('./Routers/urlrouter')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
     res.render('Home')
