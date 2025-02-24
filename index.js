@@ -47,7 +47,13 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/swagger-ui', express.static(path.join(__dirname, 'node_modules', 'swagger-ui-dist')));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+app.get('/api-docs.json', (req, res) => {
+    res.send(swaggerDocs)
+});
+
 
 app.get("/", (req, res) => {
     res.redirect("/api-docs"); // Redirects to Swagger UI
