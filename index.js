@@ -6,7 +6,6 @@ const env = require("dotenv").config();
 app.set('view engine', 'ejs');
 const port = process.env.PORT | 2002;
 connectToMongoDb(process.env.MONGO_URL);
-
 const urlrouter = require('./Routers/urlrouter')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
